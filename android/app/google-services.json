@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "454640828114",
+    "firebase_url": "https://rulet-b87c2.firebaseio.com",
+    "project_id": "rulet-b87c2",
+    "storage_bucket": "rulet-b87c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:454640828114:android:d0783f2fc3e0183f5fb70b",
+        "android_client_info": {
+          "package_name": "com.limidi.rulet_v4"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "454640828114-ereiavpkocp09t3scakncc3rhtcugepu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAzSVedefd-F2zWLLqFoXVA4unyTDGo-Ds"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "454640828114-ereiavpkocp09t3scakncc3rhtcugepu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
