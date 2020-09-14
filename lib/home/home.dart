@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 import 'package:rulet_v4/screens/authenticate/statistics.dart';
 import 'package:rulet_v4/screens/fotograf_widget.dart';
-import 'package:rulet_v4/services/auth_service.dart';
+
 
 class Home extends StatefulWidget {
   @override
@@ -10,8 +10,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final Statistics statistics = Statistics();
-  final AuthService _authService = AuthService();
+
   bool isOn = true;
   var gelen = "";
   List gelenlerListesi = [
@@ -25,6 +24,19 @@ class _HomeState extends State<Home> {
     "",
     "",
   ];
+
+  List voisin = [25, 2, 21, 4, 19, 15, 32, 0, 26, 3, 35, 12, 28, 7, 29, 18, 22];
+  var orphelins = [9, 31, 14, 20, 1, 17, 34, 6];
+  var tier = [33, 16, 24, 5, 10, 23, 8, 30, 11, 36, 13, 27];
+  var birinciBolgeDeger = 0;
+  var ikinciBolgeDeger = 0;
+  var ucuncuBolgeDeger = 0;
+  var birinciSiraDeger = 0;
+  var ikinciSiraDeger = 0;
+  var ucuncuSiraDeger = 0;
+  var voisinDeger = 0;
+  var orphelinsDeger = 0;
+  var tierDeger = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -101,7 +113,27 @@ class _HomeState extends State<Home> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Center(child: isOn ? FotografWidget() : Statistics()),
+                    Center(
+                        child: isOn
+                            ? FotografWidget(birinciBolgeDeger,
+                            ikinciBolgeDeger,
+                            ucuncuBolgeDeger,
+                            birinciSiraDeger,
+                            ikinciSiraDeger,
+                            ucuncuSiraDeger,
+                            voisinDeger,
+                            orphelinsDeger,
+                            tierDeger)
+                            : Statistics(
+                                birinciBolgeDeger,
+                                ikinciBolgeDeger,
+                                ucuncuBolgeDeger,
+                                birinciSiraDeger,
+                                ikinciSiraDeger,
+                                ucuncuSiraDeger,
+                                voisinDeger,
+                                orphelinsDeger,
+                                tierDeger)),
                   ],
                 )),
             Expanded(
@@ -116,18 +148,11 @@ class _HomeState extends State<Home> {
                     flex: 1,
                     child: RaisedButton(
                       child: Text(
-                        "Önceki turu sil",
+                        "Tabloları sıfırla",
                         textAlign: TextAlign.center,
                       ),
                       onPressed: () {
-                        if (gelenlerListesi.length > 8) {
-                          setState(() {
-                            gelenlerListesi.removeLast();
-                            print(gelenlerListesi);
-                          });
-                        } else {
-                          return null;
-                        }
+                        denemeMethod();
                       },
                     ),
                   ),
@@ -423,9 +448,9 @@ class _HomeState extends State<Home> {
                           } else {
                             gelenlerListesi.add(gelen);
                             print(gelenlerListesi);
+                            updateStatistics();
                             gelen = "";
                           }
-                          statistics.
 
                           setState(() {
                             gelen;
@@ -447,4 +472,116 @@ class _HomeState extends State<Home> {
   void toggle(bool parametre) {
     parametre != parametre;
   }
+
+  updateStatistics() {
+    var intGelen = int.tryParse(gelenlerListesi[gelenlerListesi.length - 1]);
+
+    if (intGelen >= 1 && intGelen < 13) {
+      birinciBolgeDeger = 0;
+    } else {
+      birinciBolgeDeger++;
+    }
+
+    if (intGelen >= 13 && intGelen <= 24) {
+      ikinciBolgeDeger = 0;
+    } else {
+      ikinciBolgeDeger++;
+    }
+    if (intGelen > 24 && intGelen <= 36) {
+      ucuncuBolgeDeger = 0;
+    } else {
+      ucuncuBolgeDeger++;
+    }
+    if (intGelen % 3 == 1) {
+      birinciSiraDeger = 0;
+    } else {
+      birinciSiraDeger++;
+    }
+
+    if (intGelen % 3 == 2) {
+      ikinciSiraDeger = 0;
+    } else {
+      ikinciSiraDeger++;
+    }
+
+    if (intGelen == 0) {
+      ucuncuSiraDeger++;
+    } else if (intGelen % 3 == 0) {
+      ucuncuSiraDeger = 0;
+    } else {
+      ucuncuSiraDeger++;
+    }
+
+    voisin.contains(intGelen) ? voisinDeger = 0 : voisinDeger++;
+    tier.contains(intGelen) ? tierDeger = 0 : tierDeger++;
+    orphelins.contains(intGelen) ? orphelinsDeger = 0 : orphelinsDeger++;
+  }
+
+  deleteStatistics(){
+    if (gelenlerListesi.length > 8) {
+      setState(() {
+        gelenlerListesi.removeLast();
+      });
+      birinciBolgeDeger = 0;
+      ikinciBolgeDeger = 0;
+      ucuncuBolgeDeger = 0;
+      birinciSiraDeger = 0;
+      ikinciSiraDeger = 0;
+      ucuncuSiraDeger = 0;
+      voisinDeger = 0;
+      orphelinsDeger = 0;
+      tierDeger = 0;
+      for(var i =8; i<gelenlerListesi.length-1;){
+        gelen = gelenlerListesi[i];
+        i++;
+        updateStatistics();
+      }
+      gelen="";
+      print(gelenlerListesi);
+    } else {
+      return null;
+    }
+
+  }
+
+  denemeMethod(){
+
+    birinciBolgeDeger = 0;
+    ikinciBolgeDeger = 0;
+    ucuncuBolgeDeger = 0;
+    birinciSiraDeger = 0;
+    ikinciSiraDeger = 0;
+    ucuncuSiraDeger = 0;
+    voisinDeger = 0;
+    orphelinsDeger = 0;
+    tierDeger = 0;
+
+    gelenlerListesi = [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+    ];
+
+
+
+
+
+
+    setState(() {
+    });
+  }
+
+
+
+
+
+
+
 }
+

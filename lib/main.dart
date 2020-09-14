@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
             child: MaterialApp(
               debugShowCheckedModeBanner: false,
               theme: ThemeData.light(),
-              home: Home(),
+              home: Authenticate(),
             ),
           );
         });

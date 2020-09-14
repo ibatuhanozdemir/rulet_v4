@@ -64,8 +64,8 @@ class _SignInState extends State<SignIn> {
                     height: 20,
                   ),
                   RaisedButton(
-                    child: Text("Giriş Yap"),
-                    color: Colors.red,
+                    child: Text("Giriş Yap", style: TextStyle(color: Colors.white),),
+                    color: Colors.green.shade900,
                     onPressed: () async {
                       if (_formKey.currentState.validate()) {
                         print(email);
