@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:rulet_v4/screens/authenticate/statistics.dart';
 import 'package:rulet_v4/screens/fotograf_widget.dart';
 
-
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-
   bool isOn = true;
   var gelen = "";
   List gelenlerListesi = [
@@ -45,7 +43,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         backgroundColor: Colors.green.shade900,
         title: Text(
-          ("${isOn ? "Gelmesi beklenen sayılar" : "Hangi bölge kaç eldir gelmedi"}"),
+          ("${isOn ? "Expected numbers for next round" : "Number of rounds passed since last time"}"),
           style: TextStyle(
             fontSize: 15,
           ),
@@ -82,7 +80,7 @@ class _HomeState extends State<Home> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            "Son gelenler",
+                            "Last numbers",
                             style: TextStyle(color: Colors.white),
                           ),
                           Text(gelenlerListesi[gelenlerListesi.length - 1],
@@ -113,18 +111,10 @@ class _HomeState extends State<Home> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Center(
-                        child: isOn
-                            ? FotografWidget(birinciBolgeDeger,
-                            ikinciBolgeDeger,
-                            ucuncuBolgeDeger,
-                            birinciSiraDeger,
-                            ikinciSiraDeger,
-                            ucuncuSiraDeger,
-                            voisinDeger,
-                            orphelinsDeger,
-                            tierDeger)
-                            : Statistics(
+                    isOn
+                        ? Container(
+                            width: MediaQuery.of(context).size.width*0.9,
+                            child: FotografWidget(
                                 birinciBolgeDeger,
                                 ikinciBolgeDeger,
                                 ucuncuBolgeDeger,
@@ -133,7 +123,18 @@ class _HomeState extends State<Home> {
                                 ucuncuSiraDeger,
                                 voisinDeger,
                                 orphelinsDeger,
-                                tierDeger)),
+                                tierDeger),
+                          )
+                        : Statistics(
+                            birinciBolgeDeger,
+                            ikinciBolgeDeger,
+                            ucuncuBolgeDeger,
+                            birinciSiraDeger,
+                            ikinciSiraDeger,
+                            ucuncuSiraDeger,
+                            voisinDeger,
+                            orphelinsDeger,
+                            tierDeger),
                   ],
                 )),
             Expanded(
@@ -148,7 +149,7 @@ class _HomeState extends State<Home> {
                     flex: 1,
                     child: RaisedButton(
                       child: Text(
-                        "Tabloları sıfırla",
+                        "Reset",
                         textAlign: TextAlign.center,
                       ),
                       onPressed: () {
@@ -517,7 +518,7 @@ class _HomeState extends State<Home> {
     orphelins.contains(intGelen) ? orphelinsDeger = 0 : orphelinsDeger++;
   }
 
-  deleteStatistics(){
+  deleteStatistics() {
     if (gelenlerListesi.length > 8) {
       setState(() {
         gelenlerListesi.removeLast();
@@ -531,21 +532,19 @@ class _HomeState extends State<Home> {
       voisinDeger = 0;
       orphelinsDeger = 0;
       tierDeger = 0;
-      for(var i =8; i<gelenlerListesi.length-1;){
+      for (var i = 8; i < gelenlerListesi.length - 1;) {
         gelen = gelenlerListesi[i];
         i++;
         updateStatistics();
       }
-      gelen="";
+      gelen = "";
       print(gelenlerListesi);
     } else {
       return null;
     }
-
   }
 
-  denemeMethod(){
-
+  denemeMethod() {
     birinciBolgeDeger = 0;
     ikinciBolgeDeger = 0;
     ucuncuBolgeDeger = 0;
@@ -568,20 +567,6 @@ class _HomeState extends State<Home> {
       "",
     ];
 
-
-
-
-
-
-    setState(() {
-    });
+    setState(() {});
   }
-
-
-
-
-
-
-
 }
-

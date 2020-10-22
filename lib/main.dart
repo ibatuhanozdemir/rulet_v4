@@ -2,11 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-import 'package:rulet_v4/home/home.dart';
 import 'package:rulet_v4/models/kullanici.dart';
 import 'package:rulet_v4/screens/authenticate/authenticate.dart';
-import 'package:rulet_v4/screens/authenticate/statistics.dart';
-import 'package:rulet_v4/screens/wrapper.dart';
 import 'package:rulet_v4/services/auth_service.dart';
 import 'package:rulet_v4/services/database_service.dart';
 
@@ -39,3 +36,4 @@ class MyApp extends StatelessWidget {
         });
   }
 }
+adasdad
